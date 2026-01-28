@@ -22,15 +22,15 @@ public enum WeaponBulletType {
 
 public class WeaponHandler : MonoBehaviour {
 
-    private Animator anim;
+    protected Animator anim;
 
     public WeaponAim weapon_Aim;
 
     [SerializeField]
-    private GameObject muzzleFlash;
+    protected GameObject muzzleFlash;
 
     [SerializeField]
-    private AudioSource shootSound, reload_Sound;
+    protected AudioSource shootSound, reload_Sound;
 
     public WeaponFireType fireType;
 
@@ -38,11 +38,14 @@ public class WeaponHandler : MonoBehaviour {
 
     public GameObject attack_Point;
 
+    
+
     void Awake() {
         anim = GetComponent<Animator>();
     }
 
-    public void ShootAnimation() {
+    public virtual void ShootAnimation() {
+        // anim.Play("BasicSwing", 0, 0f);
         anim.SetTrigger(AnimationTags.SHOOT_TRIGGER);
     }
 

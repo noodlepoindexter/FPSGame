@@ -64,8 +64,10 @@ public class MPlayerAttack : MonoBehaviour {
 
             if(Input.GetMouseButtonDown(0)) {
 
+                Debug.Log("Mouse Button Down detected " +weapon_Manager.GetCurrentSelectedWeapon().name);
                 // handle axe
                 if(weapon_Manager.GetCurrentSelectedWeapon().tag == Tags.AXE_TAG) {
+                    Debug.Log("Axe attack animation");
                     weapon_Manager.GetCurrentSelectedWeapon().ShootAnimation();
                 }
 
