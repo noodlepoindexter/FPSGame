@@ -11,5 +11,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/mods/mod_scenes/Level2.unity
     guid: 3f4d81d0558984c2c90e6159de18db6a
+  - enabled: 1
+    path: Assets/mods/mod_scenes/IntroScene.unity
+    guid: 02f9f979761f64f6a8cbe357289ddde8
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

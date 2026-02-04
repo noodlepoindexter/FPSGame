@@ -10,6 +10,8 @@ public class MPlayerAttack : MonoBehaviour {
     private float nextTimeToFire;
     public float damage = 20f;
 
+    [SerializeField] private float axeWeaponCastRange = 4f;
+
     private Animator zoomCameraAnim;
     private bool zoomed;
 
@@ -69,6 +71,8 @@ public class MPlayerAttack : MonoBehaviour {
                 if(weapon_Manager.GetCurrentSelectedWeapon().tag == Tags.AXE_TAG) {
                     Debug.Log("Axe attack animation");
                     weapon_Manager.GetCurrentSelectedWeapon().ShootAnimation();
+
+                    AxeSwingDamageCheck();
                 }
 
                 // handle shoot
@@ -125,6 +129,22 @@ public class MPlayerAttack : MonoBehaviour {
         }
 
     } // bullet fired
+
+    // For now, this is just a raycast but with a limited range
+    void AxeSwingDamageCheck() {
+
+        RaycastHit hit;
+
+        if(Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit, axeWeaponCastRange)) {
+
+            if(hit.transform.tag == Tags.ENEMY_TAG) {
+                hit.transform.GetComponent<MHealthScript>().ApplyDamage(damage);
+            }
+
+        }
+
+    } // Axe swing damage check
+
 
 } // class
 

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class MLevelManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class MLevelManager : MonoBehaviour
     public string nextLevelName = "Level2";
 
     [SerializeField] MKillCountUI killCountUI;
+
+    [SerializeField] private GameObject YouWonUI;
     
     void Start()
     {
@@ -31,8 +34,17 @@ public class MLevelManager : MonoBehaviour
         if (soFar >= requiredNumberOfKills)
         {
             Debug.Log("Level Won!"); 
-            SceneManager.LoadScene(nextLevelName);
+            // SceneManager.LoadScene(nextLevelName);
+            StartCoroutine(FadeThenLoad());
         }
+    }
+
+    IEnumerator FadeThenLoad()
+    {
+        YouWonUI.SetActive(true);
+        yield return new WaitForSeconds(5f);
+        YouWonUI.SetActive(false);
+        SceneManager.LoadScene(nextLevelName);
     }
 
     public void OnPlayerDeath()
